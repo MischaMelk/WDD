@@ -106,7 +106,7 @@ async /*9*/ function getData(URL) {
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    const buttons = document.querySelectorAll(".dropdown button, .dropdown-2 button, .dropdown-3 button");
+    const buttons = document.querySelectorAll(".hobby-button-1, .hobby-button-2, .hobby-button-3");
 
     buttons.forEach(button => {
         button.addEventListener("click", () => {
@@ -121,4 +121,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
+document.addEventListener("DOMContentLoaded", function () {
+    // Select all album buttons
+    const albumButtons = document.querySelectorAll(".albums button");
+    // Select the LP image inside the .lp div
+    const lpImage = document.querySelector(".lp img");
+    // Select the album title paragraph
+    const albumTitle = document.querySelector(".lp-title");
+
+    // Loop through each button and add a click event
+    albumButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            // Get the image source from the clicked button
+            const newImageSrc = this.querySelector("img").src;
+            
+            // Get the album title from the alt attribute of the clicked image
+            const newAlbumTitle = this.querySelector("img").alt;
+            
+            // Change the LP image source
+            lpImage.src = newImageSrc;
+            
+            // Update the album title text
+            albumTitle.textContent = newAlbumTitle;
+        });
+    });
+});
 
