@@ -1,651 +1,740 @@
-:root{
-    --background-color: fff;
-    --background-color-div: #eee;
+/* Basis code */
+:root {
+  --background-color: #001524;
+  --background-color-div: #15616d;
+  --button-color-1: #ff7d00;
+  --button-color-2: #78290f;
+  --h1-color: #ff7d00;
+  --h2-color: #ff7d00;
+  --p-color: #ffecd1;
+  --font-p: sans-serif;
 }
 
-
-
-body{
-    margin: 3em;
-    background-color: var(--background-color);
-
+body {
+  margin: 3em;
+  background-color: var(--background-color);
 }
 
-h1{
-    font-family: Impact, fantasy;
-    font-size: 3em;
+h1 {
+  font-family: Impact, fantasy;
+  font-size: 5em;
+  margin-top: -0.3em;
+  color: var(--h1-color);
 }
 
-p{
-    font-family:sans-serif;
-    font-size: 1.5em;
-    font-weight: normal;
+h2 {
+  font-family: Impact, fantasy;
+  font-size: 3em;
+  color: var(--h2-color);
+}
+
+p {
+  font-family: var(--font-p);
+  font-size: 1.5em;
+  font-weight: normal;
+}
+
+/* Slider cards */
+section {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 5em;
 }
 
 .slider {
-    position: relative;
-    width: 100%;
-    height: 74vh;
-    overflow: hidden; 
+  position: relative;
+  width: 100%;
+  height: 74vh;
+  overflow: hidden;
 }
 
-.cards{
-    display: grid;
-    grid-template-columns:50% 50%;
+.cards {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  border-radius: 3em;
+  width: 100%;
+  height: auto;
+  background-color: var(--background-color-div);
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 100%;
+  height: 100%;
+  transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+  opacity: 0;
+}
+
+.cards.active {
+  transform: translateX(-100%);
+  opacity: 1;
+}
+
+section p:nth-of-type(1) {
+  max-width: 23em;
+  color: var(--p-color);
+}
+
+.cards section img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-top-right-radius: 3em;
+  border-bottom-right-radius: 3em;
+}
+
+/* Card 1 */
+.avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  margin: 0;
+  border-radius: 0;
+  background: radial-gradient(var(--p-color), var(--button-color-1));
+  border-top-right-radius: 3em;
+  border-bottom-right-radius: 3em;
+}
+
+.cards:nth-of-type(1) img {
+  width: 60%;
+  height: 70%;
+}
+
+.apiTable {
+    width: 100%;
+    border-collapse: collapse;
+    color: var(--p-color);
+    display: table;
+    font-family: var(--font-p);
+  }
+
+/* Slider buttons onderop */
+.buttons {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.buttons button {
+  width: 10em;
+  height: 14em;
+  margin-top: 2em;
+  margin-left: 2em;
+  margin-right: 2em;
+  border-radius: 1em;
+  border: none;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.buttons button.active img {
+  filter: brightness(100%);
+  width: 180%;
+  background: radial-gradient(var(--p-color), var(--button-color-1));
+}
+
+.buttons button img:hover {
+  filter: brightness(100%);
+}
+
+.buttons button img {
+  width: 108%;
+  height: 102%;
+  object-fit: cover;
+  border-radius: 1em;
+  transition: 0.5s;
+  filter: brightness(30%);
+  background: radial-gradient(var(--p-color), var(--button-color-1));
+}
+
+.cardTransition {
+  background-color: black;
+  width: 100%;
+  height: 100%;
+  border-top-right-radius: 3em;
+  border-bottom-right-radius: 3em;
+  display: flex;
+  justify-content: end;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: end;
+}
+
+.transitionButton {
+  height: 3em;
+  width: 3em;
+
+  background-color: aqua;
+  padding: 1em;
+  padding-right: 2em;
+  border-top-left-radius: 1em;
+  border-bottom-left-radius: 1em;
+}
+
+.transitionButton img {
+  border-radius: 0;
+}
+
+/* Card 4 - leerdoelen */
+.scene-container {
+  display: flex;
+  gap: 1em;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  margin: auto;
+  background-image: linear-gradient(
+      rgba(43, 45, 66, 0.5),
+      rgba(43, 45, 66, 0.5)
+    ),
+    url("images/tth.jpg");
+  background-size: cover;
+  background-position: center;
+  border-top-right-radius: 3em;
+  border-bottom-right-radius: 3em;
+  width: 100%;
+}
+
+.scene {
+  width: 30em;
+  height: 5em;
+  perspective: 600px;
+  margin: 1em;
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+  cursor: pointer;
+}
+
+.card.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.card__face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  backface-visibility: hidden;
+}
+
+.card__face--front {
+  background: var(--button-color-1);
+  color: var(--p-color);
+}
+
+.card__face--back {
+  background: var(--button-color-2);
+  color: var(--p-color);
+  transform: rotateY(180deg);
+}
+
+.card__face--back p {
+  width: 80%;
+  font-size: large;
+}
+
+
+
+
+/* Card 3 - hobbies */
+.section-hobbies {
+  background-image: linear-gradient(
+      rgba(43, 45, 66, 0.5),
+      rgba(43, 45, 66, 0.5)
+    ),
+    url("images/hobbies.jpg");
+  background-size: cover;
+  background-position: center;
+  border-top-right-radius: 3em;
+  border-bottom-right-radius: 3em;
+  margin: 0;
+}
+
+.section-hobbies article button:nth-of-type(1) {
+  cursor: pointer;
+}
+
+/* dropdown 1 voetbal */
+.dropdown button {
+  width: 5em;
+  height: 5em;
+  border: none;
+  background-color: green;
+  border-bottom-left-radius: 1em;
+  border-bottom-right-radius: 1em;
+  position: absolute;
+  top: 0%;
+  z-index: 5;
+  transform: translate(64%, -0%);
+  transition: transform 0.5s ease-in-out;
+}
+
+.dropdown button.active {
+  transform: translate(64%, 600%);
+}
+
+.dropdown button img {
+  border-radius: 0;
+  width: 4em;
+  height: auto;
+}
+
+.dropBlock {
+  width: 38em;
+  height: 25em;
+  background-image: linear-gradient(to top, green 50%, lightblue 50%);
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translate(7%, -100%);
+  z-index: 4;
+  transition: transform 0.5s ease-in-out;
+  border-bottom-right-radius: 1em;
+}
+
+.dropdown div:nth-of-type(1).active {
+  transform: translate(7%, 0%);
+  z-index: 10;
+}
+
+/* Tekening voetbal */
+.goalPost {
+  display: flex;
+  justify-content: center;
+  margin-top: 2em;
+}
+
+.leftPost,
+.rightPost {
+  background-color: white;
+  width: 1em;
+  height: 15em;
+  border-radius: 2px;
+}
+
+.crossbar {
+  background-color: white;
+  width: 25em;
+  height: 1em;
+}
+
+.net {
+  position: absolute;
+  width: 26em;
+  height: 15em;
+  left: 6em;
+  bottom: 10;
+  background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 15px,
+      white 16px
+    ),
+    repeating-linear-gradient(90deg, transparent, transparent 15px, white 16px);
+  opacity: 0.7;
+}
+
+.line {
+  width: 100%;
+  height: 0.2em;
+  background-color: white;
+}
+
+.football {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: white;
+  border-radius: 50%;
+  width: 5em;
+  height: 5em;
+  transition: transform 0.5s ease-in-out;
+
+  position: relative;
+  top: 7%;
+  left: 45%;
+  box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.3);
+}
+
+.football img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.football.active {
+  animation: schotOpDoel 2s forwards;
+}
+
+@keyframes schotOpDoel {
+  0% {
+    transform: translate(0);
+    animation-timing-function: linear;
+  }
+  20%,
+  35% {
+    transform: translate(150px, -250px) rotate(360deg) scale(0.6);
+    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  }
+  80% {
+    transform: translate(150px, -80px) scale(0.6);
+    animation-timing-function: ease-in;
+  }
+  85% {
+    transform: translate(150px, -110px) scale(0.6);
+    animation-timing-function: ease-in;
+  }
+
+  90% {
+    transform: translate(150px, -80px) scale(0.6);
+    animation-timing-function: ease-out;
+  }
+
+  95% {
+    transform: translate(150px, -90px) scale(0.6);
+    animation-timing-function: ease-in;
+  }
+
+  100% {
+    transform: translate(150px, -80px) scale(0.6);
+  }
+}
+
+/* Dropdown button 2 */
+.dropdown-2 button {
+  width: 5em;
+  height: 5em;
+  border: none;
+  background-color: orange;
+  border-bottom-left-radius: 1em;
+  border-bottom-right-radius: 1em;
+  position: absolute;
+  top: 0%;
+  z-index: 5;
+  transform: translate(450%, -0%);
+  transition: transform 0.5s ease-in-out;
+}
+
+.dropdown-2 button.active {
+  transform: translate(450%, 600%);
+}
+
+.dropdown-2 button img {
+  border-radius: 0;
+  width: 4em;
+  height: auto;
+}
+
+.dropBlock-2 {
+  width: 38em;
+  height: 25em;
+  background: linear-gradient(
+    360deg,
+    oklch(0.79 0.21 74.3),
+    oklch(0.6 0.23 30),
+    oklch(50% 0.25 270));
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translate(7%, -100%);
+  z-index: 4;
+  transition: transform 0.5s ease-in-out;
+  border-bottom-right-radius: 1em;
+  border-bottom-left-radius: 1em;
+  perspective: 45em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dropdown-2 div:nth-of-type(1).active {
+  transform: translate(7%, 0%);
+  z-index: 10;
+}
+
+.cube-section {
+  width: 15em;
+  height: 15em;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: spinCube 10s infinite linear;
+}
+
+.side-1,
+.side-2,
+.side-3,
+.side-4 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+}
+
+.cube-section div img {
+  border-radius: 0;
+}
+
+.side-1 {
+  transform: rotateY(0deg) translateZ(7.5em);
+}
+.side-2 {
+  transform: rotateY(180deg) translateZ(7.5em);
+}
+.side-3 {
+  transform: rotateY(90deg) translateZ(7.5em);
+}
+.side-4 {
+  transform: rotateY(-90deg) translateZ(7.5em);
+}
+
+@keyframes spinCube {
+  0% {
+    transform: rotateX(0deg) rotateY(0deg);
+  }
+  100% {
+    transform: rotateX(0deg) rotateY(360deg);
+  }
+}
+
+/* dropdown button 3 */
+.hobby-button-3 {
+  width: 5em;
+  height: 5em;
+  border: none;
+  background-color: lightblue;
+  border-bottom-left-radius: 1em;
+  border-bottom-right-radius: 1em;
+  position: absolute;
+  top: 0%;
+  z-index: 5;
+  transform: translate(876%, -0%);
+  transition: transform 0.5s ease-in-out;
+}
+
+.hobby-button-3.active {
+  transform: translate(876%, 600%);
+}
+
+.hobby-button-3 img {
+  border-radius: 0;
+  width: 4em;
+  height: auto;
+}
+
+.dropBlock-3 {
+  width: 38em;
+  height: 25em;
+  background-color: lightblue;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translate(7%, -100%);
+  z-index: 4;
+  transition: transform 0.5s ease-in-out;
+  border-bottom-left-radius: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dropdown-3 div:nth-of-type(1).active {
+  transform: translate(7%, 0%);
+  z-index: 10;
+}
+
+/* LP speler */
+.lp-player {
+  width: 300px;
+  height: 320px;
+  background-color: #323232;
+  border-radius: 20px;
+  position: relative;
+  padding: 20px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.turntable {
+  width: 240px;
+  height: 240px;
+  background-color: #522a27;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.lp-player p {
+  position: relative;
+  text-align: center;
+  size: 100%;
+  color: white;
+  font-family: Impact, fantasy;
+}
+
+.lp {
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: rotateLP 10s linear infinite;
+}
+
+.tonearm {
+  width: 10em;
+  height: 5px;
+  background-color: #aaa;
+  position: absolute;
+  top: 13em;
+  left: 6em;
+  transform-origin: 100% 50%;
+  transform: rotate(110deg);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Rotating animation for the LP */
+@keyframes rotateLP {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* Album selectie */
+.albums {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.albums button {
+  border: none;
+  background-color: transparent;
+  width: 7em;
+  height: 6em;
+  margin: 0.3em;
+  margin-left: 5em;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.albums button:hover {
+  transform: scale(1.2);
+}
+
+.albums img {
+  border-radius: 1em;
+}
+
+/* Responsiveness */
+@media (max-width: 1200px) {
+  p {
+    font-size: small;
+  }
+
+  .cards {
+    display: flex;
+    flex-direction: column;
     border-radius: 3em;
     width: 100%;
-    height: 74vh;
+    height: 100%;
     background-color: var(--background-color-div);
-    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2), 
-                -3px -3px 5px rgba(255, 255, 255, 0.6);
-    position: relative;
-
     position: absolute;
     top: 0;
     left: 100%;
     width: 100%;
-    height: 100%;
     transition: transform 1s ease-in-out, opacity 1s ease-in-out;
     opacity: 0;
-}
+    height: 37vh;
+  }
 
-.cards.active {
-    transform: translateX(-100%);
-    opacity: 1;
-}
+  .cards section:first-child {
+    max-height: 50%;
+    padding: 3em;
+    font-size: smaller;
+  }
 
-
-section{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items:flex-start;
-    margin: 5em;
-}
-
-.cards img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-top-right-radius: 3em;
+  .cards section:nth-child(2) {
+    border-bottom-left-radius: 3em;
     border-bottom-right-radius: 3em;
-}
+    border-top-right-radius: 0;
+  }
 
+  .slider div:first-child section img {
+    width: auto;
+    height: 100%;
+  }
 
-
-
-
-.buttons{
-    display:flex;
-    justify-content: center;
-    position: absolute;
-    top: 70%;
-    left: 50%;
-    transform: translateX(-50%);
-
-}
-
-.buttons button{
-    width: 10em;
-    height: 14em;
-    margin-top: 2em;
-    margin-left: 2em;
-    margin-right: 2em;
-    border-radius: 1em;
-    border: none;
-    background-color: transparent;
+  section {
     display: flex;
     justify-content: center;
-    align-items: center;
-    transition: .5s;
-}
+    flex-direction: row;
+    margin-left: 0;
+  }
 
-.buttons button.active img {
+  h2 {
+    min-width: 30%;
+    max-width: 30%;
+    margin-top: 0.3em;
+    margin-right: 0.5em;
+  }
 
-    filter: brightness(100%);
-    width: 180%;
-    
-}
-
-.buttons button img:hover{
-
-    filter: brightness(100%);
-
-}
-
-.buttons button img{
-    width: 108%;
-    height: 102%;
-    object-fit: cover;
-    border-radius: 1em;
-    transition: .5s;
-    filter: brightness(30%);
-}
-
-/* 
-@keyframes disappear {
-    0% {
-        opacity: 1;
-        transform: translateX(0) scale(1);
-    }
-    100% {
-        opacity: 0;
-        transform: translateX(-100%) scale(0.5);
-    }
-} */
-
-/* .cards.disappear {
-    animation: disappear 1s forwards;
-} */
-
-.cardTransition{
-    background-color: black;
-    width: 100%;
-    height: 100%;
-    border-top-right-radius: 3em;
+  #card3 section img {
+    border-bottom-left-radius: 3em;
     border-bottom-right-radius: 3em;
-    display:flex;
-    justify-content: end;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: end;
-
-}
-
-.transitionButton{
-    height: 3em;
-    width: 3em;
-    
-
-    background-color: aqua;
-    padding: 1em;
-    padding-right: 2em;
-    border-top-left-radius: 1em;
-    border-bottom-left-radius: 1em;
-}
-
-.transitionButton img{
-    border-radius: 0;
-}
-
-/* .rotateCircle{
-    background-color: lightgrey;
+    border-top-right-radius: 0;
     width: 100%;
-    height: 100%;
-    border-top-right-radius: 3em;
+    height: 34vh;
+  }
+
+  .scene-container {
+    border-bottom-left-radius: 3em;
     border-bottom-right-radius: 3em;
-}
-
-.circle div{
-    position: absolute;
-    width: var(--maat);
-    height: var(--maat);
-    left: calc(50% - var(--maat) / 2);
-    top: calc(50% - var(--maat) / 2 - var(--maat)* .5);
-    border-radius: calc(var(--maat)* .3);
-    display: flex
-;
-    justify-content: center;
-    align-items: center;
-    animation: draaiende-drieD-cirkel-recht var(--duur) linear infinite paused;
-} */
-
-.scene-container {
-    display: flex;
-
-    gap: 1em;
-    flex-direction: column;
-
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    margin: auto;
-
-
-
-    background-image:linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), 
-    url('images/tth.jpg'); 
-    background-size: cover; 
-    background-position: center; 
-    border-top-right-radius: 3em;
-    border-bottom-right-radius: 3em;
+    border-top-right-radius: 0;
+    flex-direction: row;
     width: 100%;
   }
-  
-  .scene {
-    width: 30em;
-    height: 5em;
-    perspective: 600px;
-    margin: 1em;
 
-
+  .cards:nth-of-type(4) {
+    height: 50vh;
   }
-  
-  .card {
-    width: 100%;
-    height: 100%;
+
+  .section-hobbies {
+    height: 30vh;
     position: relative;
-    transform-style: preserve-3d;
-    transition: transform 0.6s;
-    cursor: pointer;
-  }
-  
-  .card.is-flipped {
-    transform: rotateY(180deg);
-  }
-  
-  .card__face {
-    position: absolute;
-    width: 100%;
-    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: bold;
-    backface-visibility: hidden;
   }
-  
-  .card__face--front {
-    background: lightblue;
-  }
-  
-  .card__face--back {
-    background: navy;
-    color: white;
-    transform: rotateY(180deg);
-  }
-
-
-  .apiTable {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-    display: table;
 }
-
-
-.section-hobbies{
-    background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), 
-    url('images/hobbies.jpg'); 
-    background-size: cover; 
-    background-position: center; 
-    border-top-right-radius: 3em;
-    border-bottom-right-radius: 3em;
-    margin: 0;
-}
-
-
-/* dropdown 1 voetbal */
-.dropdown button{
-    width: 5em;
-    Height: 5em;
-    border: none;
-    background-color: green;
-    border-bottom-left-radius: 1em;
-    border-bottom-right-radius: 1em;
-    position:absolute;
-    top:0%;
-    z-index: 5;
-    transform: translate(64%, -0%);
-    transition: transform 0.5s ease-in-out;
-}
-
-.dropdown button.active{
-    transform: translate(64%, 600%);
-}
-
-.dropdown button img{
-    border-radius: 0;
-    width: 4em;
-    height: auto;
-}
-
-.dropBlock {
-    width: 38em;
-    height: 25em;
-    background-image: linear-gradient(to top, green 50%, lightblue 50%);
-    position: fixed;
-    top: 0;
-    left: 50%;
-    transform: translate(7%, -100%);
-    z-index: 4;
-    transition: transform 0.5s ease-in-out;
-    border-bottom-right-radius: 1em;
-
-}
-
-.dropdown div:nth-of-type(1).active{
-    transform: translate(7%, 0%);
-    z-index: 10;
-}
-
-.goalPost{
-    display:flex;
-    justify-content: center;
-    margin-top: 2em;
-    
-}
-
-.leftPost, .rightPost {
-    background-color: white;
-    width: 1em;
-    height: 15em;
-    border-radius: 2px;
-}
-
-.crossbar{
-    background-color: white;
-    width: 25em;
-    height: 1em;
-}
-
-.net {
-    position: absolute;
-    width: 26em;
-    height: 15em;
-    left: 6em;
-    bottom: 10;
-    background: repeating-linear-gradient(0deg, transparent, transparent 15px, white 16px),
-                repeating-linear-gradient(90deg, transparent, transparent 15px, white 16px);
-    opacity: 0.7;
-}
-
-.line{
-    width: 100%;
-    height: .2em;
-    background-color: white;
-}
-
-.football{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    background-color: white;
-    border-radius: 50%;
-    width: 5em;
-    height: 5em;
-    transition: transform 0.5s ease-in-out; 
-
-    position: relative;
-    top: 7%;
-    left: 45%;
-    box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.3);
-}
-
-.football img{
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
-.football.active {
-    animation: schotOpDoel 2s forwards;
-}
-
-@keyframes schotOpDoel{
-    0%{
-        transform: translate(0);
-        animation-timing-function:linear;
-    }
-    20%, 35%{
-        transform: translate(150px, -250px) rotate(360deg) scale(.6);
-        animation-timing-function:cubic-bezier(0.550, 0.055, 0.675, 0.190);
-    }
-    80% {
-        transform: translate(150px, -80px) scale(.6);
-        animation-timing-function:ease-out;
-    }
-    85%{
-        transform: translate(150px, -110px) scale(.6);
-        animation-timing-function:ease-in;
-    }
-
-    90%{
-        transform: translate(150px, -80px) scale(.6);
-        animation-timing-function:ease-out;
-    }
-
-    95%{
-        transform: translate(150px, -90px) scale(.6);
-        animation-timing-function:ease-in;
-    }
-
-    100%{
-        transform: translate(150px, -80px) scale(.6);
-    }
-}
-
-
-/* Dropdown button 2 */
-.dropdown-2 button{
-    width: 5em;
-    Height: 5em;
-    border: none;
-    background-color: orange;
-    border-bottom-left-radius: 1em;
-    border-bottom-right-radius: 1em;
-    position:absolute;
-    top:0%;
-    z-index: 5;
-    transform: translate(450%, -0%);
-    transition: transform 0.5s ease-in-out;
-}
-
-.dropdown-2 button.active{
-    transform: translate(450%, 600%);
-}
-
-.dropdown-2 button img{
-    border-radius: 0;
-    width: 4em;
-    height: auto;
-}
-
-.dropBlock-2 {
-    width: 38em;
-    height: 25em;
-    background: linear-gradient(360deg, 
-    oklch(0.79 0.21 74.3),
-    oklch(0.6 0.23 30),
-    oklch(50% 0.25 270)
-);
-
-    position: fixed;
-    top: 0;
-    left: 50%;
-    transform: translate(7%, -100%);
-    z-index: 4;
-    transition: transform 0.5s ease-in-out;
-    border-bottom-right-radius: 1em;
-    border-bottom-left-radius: 1em;
-    perspective: 45em;    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-
-.dropdown-2 div:nth-of-type(1).active{
-    transform: translate(7%, 0%);
-    z-index: 10;
-}
-
-.cube-section{
-    width: 15em;
-    height: 15em;
-    position: relative;
-    transform-style: preserve-3d;
-    animation: spinCube 10s infinite linear;
-}
-
-.side-1, .side-2, .side-3, .side-4, .side-5, .side-6{
-    position: absolute;
-    width:100%;
-    height: 100%;
-    background-color: white;
-    /* border: 1px solid grey; */
-}
-
-.cube-section div img{
-    border-radius: 0;
-}
-
-.side-1 { transform: rotateY(0deg) translateZ(7.5em); } 
-.side-2 { transform: rotateY(180deg) translateZ(7.5em); } 
-.side-3 { transform: rotateY(90deg) translateZ(7.5em); }
-.side-4 { transform: rotateY(-90deg) translateZ(7.5em); } 
-
-
-@keyframes spinCube {
-    0% { 
-        transform: rotateX(0deg) rotateY(0deg); 
-    }
-    100% { 
-        transform: rotateX(0deg) rotateY(360deg); 
-    }
-}
-
-
-
-/* dropdown button 3 */
-.hobby-button-3{
-    width: 5em;
-    Height: 5em;
-    border: none;
-    background-color: lightblue;
-    border-bottom-left-radius: 1em;
-    border-bottom-right-radius: 1em;
-    position:absolute;
-    top:0%;
-    z-index: 5;
-    transform: translate(876%, -0%);
-    transition: transform 0.5s ease-in-out;
-}
-
-.hobby-button-3.active{
-    transform: translate(876%, 600%);
-}
-
-.hobby-button-3 img{
-    border-radius: 0;
-    width: 4em;
-    height: auto;
-}
-
-.dropBlock-3 {
-    width: 38em;
-    height: 25em;
-    background-color: lightblue;
-    position: fixed;
-    top: 0;
-    left: 50%;
-    transform: translate(7%, -100%);
-    z-index: 4;
-    transition: transform 0.5s ease-in-out;
-    border-bottom-left-radius: 1em;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    
-
-}
-
-.dropdown-3 div:nth-of-type(1).active{
-    transform: translate(7%, 0%);
-    z-index: 10;
-}
-
-.lp-player {
-    width: 300px;
-    height: 320px;
-    background-color: #323232;
-    border-radius: 20px;
-    position: relative;
-    padding: 20px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-
-  }
-
-
-  .turntable {
-    width: 240px;
-    height: 240px;
-    background-color: #522A27;
-    border-radius: 50%;
-    position: relative;
-    overflow: hidden;
-    margin: 0 auto;
-
-  }
-
-  .lp-player p{
-    position: relative;
-    text-align: center;
-    size: 100%;
-    color: white;
-    font-family: Impact, fantasy;
-  }
-
-
-  .lp {
-    width: 100%;
-    height: 100%;
-    background-color: #000;
-    border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    animation: rotateLP 10s linear infinite;
-  }
-
-
-
-  /* Tonearm */
-  .tonearm {
-    width: 10em;
-    height: 5px;
-    background-color: #aaa;
-    position: absolute;
-    top: 13em;
-    left: 6em;
-    transform-origin: 100% 50%;
-    transform: rotate(110deg);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  }
-
-  /* Rotating animation for the LP */
-  @keyframes rotateLP {
-    0% { transform: translate(-50%, -50%) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg); }
-  }
-
-
-.albums{
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.albums button{
-    border: none;
-    background-color: transparent;
-    width: 7em;
-    height: 6em;
-    margin: .3em;
-    margin-left: 5em;
-    cursor: pointer;
-
-
-}
-
-.albums img{
-    border-radius: 1em;
-}
-
-
